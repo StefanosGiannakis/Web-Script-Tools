@@ -15,14 +15,14 @@ $urlparam = isset($_GET['url'])?$_GET['url']:null;
 // if(in_array($urlparam,Route::$validRoutes))
 if(isset(Route::$validRoutes[$urlparam]))
 {
-    $routeMethod=Route::$validRoutes[$urlparam];
+    $routeMethod=Route::$validRoutes[$urlparam]['method'];
     if("post"==$routeMethod)
     
     if("get"==$routeMethod)
     echo $twig->render("$urlparam.html", ['name' => 'Fabien']);
 }
 else
-echo $twig->render("error.html", ['name' => 'Fabien']);
+    echo $twig->render("error.html", ['name' => 'Fabien']);
 
 
 
