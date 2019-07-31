@@ -15,3 +15,7 @@ Route::set('welcome','get',function(){
 Route::set('create_user','post',function(){
     UserController::useFunction('CreateUser');
 });
+
+Route::set('stats','get',function(){
+    PageViewController::CreateView('header');
+});

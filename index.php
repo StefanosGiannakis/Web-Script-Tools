@@ -12,11 +12,13 @@ $loader = new Twig_Loader_Filesystem(__DIR__.'/app/V');
 $twig = new Twig_Environment($loader);
 
 $urlparam = isset($_GET['url'])?$_GET['url']:null;
-// if(in_array($urlparam,Route::$validRoutes))
+
+//if(in_array($urlparam,Route::$validRoutes))
 if(isset(Route::$validRoutes[$urlparam]))
 {
     $routeMethod=Route::$validRoutes[$urlparam]['method'];
     if("post"==$routeMethod)
+        exit('post method exit');
     
     if("get"==$routeMethod)
     echo $twig->render("$urlparam.html", ['name' => 'Fabien']);
