@@ -17,8 +17,10 @@ $urlparam = isset($_GET['url'])?$_GET['url']:null;
 if(isset(Route::$validRoutes[$urlparam]))
 {
     $routeMethod=Route::$validRoutes[$urlparam]['method'];
-    if("post"==$routeMethod)
-        exit('post method exit');
+    // if("post"==$routeMethod){
+
+    //     // exit('post method exit');
+    // }
     
     if("get"==$routeMethod)
     echo $twig->render("$urlparam.html", ['name' => 'Fabien']);

@@ -9,7 +9,16 @@
                   <div class="d-flex h-100 text-center align-items-center">
                     <div class="w-100 text-white">
                       <h1 class="display-3">Fortnite Stats</h1>
-                      <p class="lead mb-0"> add information in real-time to your website</p>
+                      <p class="lead mb-0"> Get Players Stats</p>
+                      <br>
+                      <div class="row">
+                        <div class="col-md-4"></div>
+                        <form class="form-inline">
+                            <input id="inputUserame" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                            <button id="inputUserameBtn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                          </form>
+                        <div class="col-md-4"></div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -83,4 +92,46 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+<script>
+
+$(function(){
+  // var url = window.location.hostname+"user_id";
+  var url = 'http://localhost:808/web-script-tools/Web-Script-Tools/user_id'
+  console.log(url)
+  var data = "";
+  var result = "";
+  function getStats(data){
+    $.ajax({
+      method: "GET",
+      url: url,
+      data: {'username':data}
+    })
+      .done(function( msg ) {
+        console.log( msg);
+        console.log( data);
+        if(msg.indexOf('cURL Error'))
+          result = JSON.parse(msg)
+        else
+          console.log('error')
+          
+        
+        console.log(result)
+        // alert( "Data Saved: " + msg );
+      }).fail(function( error ) {
+        console.log( 'we had an error');
+      })
+      ;
+  }
+
+  $('#inputUserameBtn').on('click',function(e){
+    e.preventDefault();
+    var data  = $('#inputUserame').val();
+    getStats(data);
+  })
+
+})
+
+</script>
+
 <!-- stats end -->
