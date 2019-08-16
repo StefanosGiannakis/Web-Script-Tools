@@ -88,8 +88,8 @@ body {
 }
 
 body {
-  background: #007bff;
-  background: linear-gradient(to right, #0062E6, #33AEFF);
+  background: #002B36;
+  background: linear-gradient(to right, #002B20,  #002B36);
 }
 
 .card-signin {

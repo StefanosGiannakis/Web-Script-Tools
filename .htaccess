@@ -1,3 +1,23 @@
+
 RewriteEngine On
+#AddOutputFilterByType DEFLATE text/html
+
+
+# allow access to pim_ - variations (my watermarked images)
+#<FilesMatch "^app\V\assets.*\.*$">
+#    Allow from all
+#</FilesMatch>
+
 #RewriteRule ^([^/]*)/([^/]*)$ index.php?url=$1&username=$2 [L]
+
+RewriteRule ^/?app/V/assets/(.*)$  app/V/assets/$1 [END]
+
 RewriteRule ^([^/]+)/? index.php?url=$1 [L,QSA]
+
+
+# disallow hotlinking 
+#RewriteCond %{HTTP_REFERER} !^$
+
+#RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?yourdomain.com [NC]
+
+#RewriteRule \.(jpg|jpeg|png|gif)$ - [NC,F,L]
