@@ -61,7 +61,10 @@
                     </div>
                   </div>
               </div>  
-                    
+              <div class="row">
+                <div id="dataTable">
+                </div>
+              </div>
                   </div>
                     <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
                       <div class="container text-center">
@@ -74,12 +77,70 @@
           integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
           crossorigin="anonymous"></script>
           <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+          <script src="https://jqwidgets.com/public/jqwidgets/jqx-all.js"></script>
+
+          <link href="https://jqwidgets.com/public/jqwidgets/styles/jqx.base.css" rel="stylesheet">
         </body>
         </html>
         
         <script>
-          
-          $(function(){
+$(function(){
+
+function activateDatatable(ajaxData){
+
+
+            // var data = {
+            //   'name':'fruit',
+            //   'type':'blue',
+            //   'calories':'zero',
+            //   'totalfat':'2',
+            //   'protein':'5'
+            // }
+            // prepare the data
+            // dataFields: [
+            //         { name: 'name', type: 'string' },
+            //         { name: 'type', type: 'string' },
+            //         { name: 'calories', type: 'int' },
+            //         { name: 'totalfat', type: 'string' },
+            //         { name: 'protein', type: 'string' }
+            //     ],
+            console.log('############')
+            console.log(ajaxData)
+            var source =
+            {
+                dataType: "json",
+                dataFields: [
+                    { name: 'name', type: 'string' },
+                    { name: 'type', type: 'string' },
+                    { name: 'calories', type: 'int' },
+                    { name: 'totalfat', type: 'string' },
+                    { name: 'protein', type: 'string' }
+                ],
+                id: 'id',
+                localData: data
+            };
+            var dataAdapter = new $.jqx.dataAdapter(source);
+            $("#dataTable").jqxDataTable(
+            {
+                width: 1200,
+                pageable: true,
+                pagerButtonsCount: 10,
+                source: dataAdapter,
+                columnsResize: true,
+                columns: [
+                  { text: 'Name', dataField: 'name', width: 300 },
+                  { text: 'Beverage Type', dataField: 'type', width: 300 },
+                  { text: 'Calories', dataField: 'calories', width: 180 },
+                  { text: 'Total Fat', dataField: 'totalfat', width: 120 },
+                  { text: 'Protein', dataField: 'protein' }
+              ]
+            });
+  }
+
+
+activateDatatable('dadada');
+
+
             // var url = window.location.hostname+"user_id";
   var url = 'http://localhost:808/web-script-tools/Web-Script-Tools/user_id'
   console.log(url)
@@ -99,7 +160,7 @@
         else
         console.log('error')
           
-        
+        activateDatatable(result);
         console.log(result)
         // alert( "Data Saved: " + msg );
       }).fail(function( error ) {
@@ -114,9 +175,8 @@
     getStats(data);
   })
   
-})
 
+});
 </script>
 <script src="http://localhost:808/web-script-tools/Web-Script-Tools/app/V/assets/js/custom_theme.js"></script>
-
 <!-- stats end -->
